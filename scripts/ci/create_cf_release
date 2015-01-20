@@ -8,11 +8,11 @@ pushd cf-release
   git submodule update --init --recursive
 popd
 
-rm -rf diego-release/cf-release || true
+rm -rf diego-release/cf-release
 cp -R cf-release diego-release/
 
-rm -rf diego-release/deployments-runtime || true
-cp -R deployments-runtime diego-release/
+rm -rf "diego-release/${DEPLOYMENTS_DIR}"
+cp -R "${DEPLOYMENTS_DIR}" diego-release/
 
 pushd diego-release
   ./scripts/ci/create_drone_yml scripts/ci/create_cf_release.drone.yml .drone.yml
